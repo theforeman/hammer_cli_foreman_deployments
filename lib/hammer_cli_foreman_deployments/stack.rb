@@ -1,8 +1,8 @@
 module HammerCLIForemanDeployments
 
-  class Deployment < HammerCLIForeman::Command
+  class Stack < HammerCLIForeman::Command
 
-    resource :deployments
+    resource :stacks
 
     class ListCommand < HammerCLIForeman::ListCommand
 
@@ -11,11 +11,6 @@ module HammerCLIForemanDeployments
         field :name, _("Name")
         HammerCLIForeman::References.taxonomies(self)
         HammerCLIForeman::References.timestamps(self)
-        field :stack, _("Stack"), Fields::Reference
-      end
-
-      def execute
-        super
       end
 
       build_options
@@ -25,7 +20,7 @@ module HammerCLIForemanDeployments
     class InfoCommand < HammerCLIForeman::InfoCommand
 
       output ListCommand.output_definition do
-        field :description, _("Description")
+        field :description, _('Description')
       end
 
       build_options
@@ -33,24 +28,24 @@ module HammerCLIForemanDeployments
 
 
     class CreateCommand < HammerCLIForeman::CreateCommand
-      success_message _("Deployment created")
-      failure_message _("Could not create the deployment")
+      success_message _("Stack created")
+      failure_message _("Could not create the stack")
 
       build_options
     end
 
 
     class DeleteCommand < HammerCLIForeman::DeleteCommand
-      success_message _("Deployment deleted")
-      failure_message _("Could not delete the deployment")
+      success_message _("Stack deleted")
+      failure_message _("Could not delete the stack")
 
       build_options
     end
 
 
     class UpdateCommand < HammerCLIForeman::UpdateCommand
-      success_message _("Deployment updated")
-      failure_message _("Could not update the deployment")
+      success_message _("Stack updated")
+      failure_message _("Could not update the stack")
 
       build_options
     end
